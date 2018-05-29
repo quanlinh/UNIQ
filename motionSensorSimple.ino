@@ -60,8 +60,8 @@ const int ledStripPin = 12;
 const int inputPin2= 2;
 const int inputPin3 = 3;
 const int inputPin4 = 4;
-//const int ledPin10 = 10;
-//const int ledPin11 = 11;
+const int inputPin5 = 5;
+const int inputPin6 = 6;
 
 void setup(){
 FastLED.addLeds<NEOPIXEL, DATA_PIN>(leds, NUM_LEDS);
@@ -69,83 +69,103 @@ pinMode(ledPin, OUTPUT);
 pinMode(inputPin2, INPUT);
 pinMode(inputPin3,INPUT);
 pinMode(inputPin4,INPUT);
+pinMode(inputPin5,INPUT);
+pinMode(inputPin6,INPUT);
+Serial.begin(9600);
+
 }
 
 void loop(){
-int value2= digitalRead(inputPin2);
-int value3= digitalRead(inputPin3);
-int value4= digitalRead(inputPin4);
- // Turn the LED on, then pause
-//  leds[0] = CRGB::Red;
-//  leds[1] = CRGB::Red;
-//  for(int i = 0,j = 29; i < j; i++,j--) 
-//  {
-//    leds[i] = CRGB::Red;
-//    leds[j] = CRGB::Blue;
-//    FastLED.show();
-//      delay(200);
-//
-//  }
-  // Now turn the LED off, then pause
+  int value2= digitalRead(inputPin2);
+  int value3= digitalRead(inputPin3);
+  int value4= digitalRead(inputPin4);
+  int value5= digitalRead(inputPin5);
+  int value6= digitalRead(inputPin6);
+   
+  //if (value2 == HIGH || value3 == HIGH || value4 == HIGH || value5 == HIGH || value6 == HIGH)
+  if (value2 == HIGH){
+  Serial.print("entered if loop");
   
-  //leds[0] = CRGB::Black;
-  //leds[1] = CRGB::Black;
-  //-------
-//   for(int i = 14,j = 15; i >=0 && j < 30; i--,j++) 
-//  {
-//    leds[i] = CRGB::Black;
-//    leds[j] = CRGB::Black;
-//    FastLED.show();
-//      delay(200);
-//
-//  }
-    //-------
-
-//  for(int i = 0; i < 30; i++) 
-//  {
-//    leds[i] = CRGB::Black;
-//    FastLED.show();
-//      delay(500);
-//
-//  }
-  //-------
-
-
-if (value2 == HIGH || value3 == HIGH || value4 == HIGH)
-{
-//digitalWrite(ledPin, HIGH);
-
-
-for(int i = 0,j = 29; i < j; i++,j--) 
-  {
-    leds[i] = CRGB::Red;
-    leds[j] = CRGB::Blue;
-    FastLED.show();
-      delay(200);
-
+  //digitalWrite(ledPin, HIGH);
+  
+  // this code will turn on the lights
+  int part1Start = 7;
+  int part1End = 23 ;
+  int part2Start = 37;
+  int part2End = 53 ;
+  int part3Start = 67;
+  int part3End = 83 ;
+  int part4Start = 97;
+  int part4End = 113 ;
+  int part5Start = 127;
+  int part5End = 143 ;
+  
+  
+  for(part1Start,part1End,part2Start,part2End,part3Start,part3End,part4Start,part4End,part5Start,part5End
+        ; part1Start < part1End,part2Start < part2End,part3Start < part3End,part4Start < part4End,part5Start < part5End
+        ; part1Start++,part1End--,part2Start++,part2End--,part3Start++,part3End--,part4Start++,part4End--,part5Start++,part5End--) 
+    {
+      leds[part1Start] = CRGB::Red;
+      leds[part1End] = CRGB::Green;
+      leds[part2Start] = CRGB::Yellow;
+      leds[part2End] = CRGB::Orange;
+      leds[part3Start] = CRGB::Purple;
+      leds[part3End] = CRGB::Blue;
+      leds[part4Start] = CRGB::Pink;
+      leds[part4End] = CRGB::White;
+      leds[part5Start] = CRGB::Cyan;
+      leds[part5End] = CRGB::Violet;
+      FastLED.show();
+        delay(200);
+    }
+  
+  // this code will turn off the lights from the midle
+  part1Start = 7;
+  part1End = 23 ;
+  part2Start = 37;
+  part2End = 53 ;
+  part3Start = 67;
+  part3End = 83 ;
+  part4Start = 97;
+  part4End = 113 ;
+  part5Start = 127;
+  part5End = 143 ;
+  
+  digitalWrite(ledPin, LOW);
+   for(int i = 14,j = 15, k = 44, l = 45, m=74, n=75, o=104, p=105, q = 134, r = 135; i >= part1Start && j < part1End, k >= part2Start && l < part2End,m >= part3Start && n < part3End, o >= part4Start 
+   && p < part4End,q >= part5Start && r < part5End; i--,j++, k--, l++, m--, n++, o--, p++, q--, r++) 
+    {
+      leds[i] = CRGB::Black;
+      leds[j] = CRGB::Black;
+      leds[k] = CRGB::Black;
+      leds[l] = CRGB::Black;
+      leds[m] = CRGB::Black;
+      leds[n] = CRGB::Black;
+      leds[o] = CRGB::Black;
+      leds[p] = CRGB::Black;
+      leds[q] = CRGB::Black;
+      leds[r] = CRGB::Black;
+      FastLED.show();
+        delay(2);
+  
+    }
+    
+  //delay(5000);
+ // FastLED.clear();
+ // value2 = digitalRead(inputPin2);
+  while(turnOff()) delay(0);  
   }
-
-digitalWrite(ledPin, LOW);
- for(int i = 14,j = 15; i >=0 && j < 30; i--,j++) 
-  {
-    leds[i] = CRGB::Black;
-    leds[j] = CRGB::Black;
-    FastLED.show();
-      delay(200);
-
-  }
-
+ 
+ 
 }
-else
-{
-//digitalWrite(ledPin, LOW);
- for(int i = 14,j = 15; i >=0 && j < 30; i--,j++) 
-  {
-    leds[i] = CRGB::Black;
-    leds[j] = CRGB::Black;
-    FastLED.show();
-      delay(200);
 
-  }
+boolean turnOff(){
+  int value2 = digitalRead(inputPin2);
+  
+  Serial.print("entered else loop");
+  FastLED.clear();
+  while(value2 == LOW) return false;
+  return true; 
 }
-}
+  
+ 
