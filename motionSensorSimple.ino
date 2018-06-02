@@ -57,7 +57,7 @@ CRGB leds[NUM_LEDS];
 //}
 const int ledPin= 13;
 const int ledStripPin = 12;
-const int inputPin2= 2;
+const int inputPin2 = 2;
 const int inputPin3 = 3;
 const int inputPin4 = 4;
 const int inputPin5 = 5;
@@ -82,8 +82,7 @@ void loop(){
   int value5= digitalRead(inputPin5);
   int value6= digitalRead(inputPin6);
    
-  //if (value2 == HIGH || value3 == HIGH || value4 == HIGH || value5 == HIGH || value6 == HIGH)
-  if (value2 == HIGH){
+  if (value2 == HIGH || value3 == HIGH || value4 == HIGH || value5 == HIGH || value6 == HIGH){
   Serial.print("entered if loop");
   
   //digitalWrite(ledPin, HIGH);
@@ -106,17 +105,17 @@ void loop(){
         ; part1Start++,part1End--,part2Start++,part2End--,part3Start++,part3End--,part4Start++,part4End--,part5Start++,part5End--) 
     {
       leds[part1Start] = CRGB::Red;
-      leds[part1End] = CRGB::Green;
+      leds[part1End] = CRGB::Red;
       leds[part2Start] = CRGB::Yellow;
-      leds[part2End] = CRGB::Orange;
+      leds[part2End] = CRGB::Yellow;
       leds[part3Start] = CRGB::Purple;
-      leds[part3End] = CRGB::Blue;
-      leds[part4Start] = CRGB::Pink;
-      leds[part4End] = CRGB::White;
+      leds[part3End] = CRGB::Purple;
+      leds[part4Start] = CRGB::Blue;
+      leds[part4End] = CRGB::Blue;
       leds[part5Start] = CRGB::Cyan;
-      leds[part5End] = CRGB::Violet;
+      leds[part5End] = CRGB::Cyan;
       FastLED.show();
-        delay(200);
+       delay(200);
     }
   
   // this code will turn off the lights from the midle
@@ -131,7 +130,7 @@ void loop(){
   part5Start = 127;
   part5End = 143 ;
   
-  digitalWrite(ledPin, LOW);
+  //digitalWrite(ledPin, LOW);
    for(int i = 14,j = 15, k = 44, l = 45, m=74, n=75, o=104, p=105, q = 134, r = 135; i >= part1Start && j < part1End, k >= part2Start && l < part2End,m >= part3Start && n < part3End, o >= part4Start 
    && p < part4End,q >= part5Start && r < part5End; i--,j++, k--, l++, m--, n++, o--, p++, q--, r++) 
     {
@@ -146,14 +145,18 @@ void loop(){
       leds[q] = CRGB::Black;
       leds[r] = CRGB::Black;
       FastLED.show();
-        delay(2);
+        delay(200);
   
     }
     
   //delay(5000);
  // FastLED.clear();
  // value2 = digitalRead(inputPin2);
-  while(turnOff()) delay(0);  
+ //checks to see if motion is still being detected
+ //if yes, continue lighting up
+ //if no, turn off
+  while(turnOff());  
+  
   }
  
  
@@ -161,11 +164,22 @@ void loop(){
 
 boolean turnOff(){
   int value2 = digitalRead(inputPin2);
+  int value3 = digitalRead(inputPin3);
+  int value4 = digitalRead(inputPin4);
+  int value5 = digitalRead(inputPin5);
+  int value6 = digitalRead(inputPin6);
+
+ 
   
   Serial.print("entered else loop");
-  FastLED.clear();
-  while(value2 == LOW) return false;
-  return true; 
+  
+  //FastLED.clear();
+  if(value2 == HIGH || value3 == HIGH || value4 == HIGH || value5 == HIGH || value6 == HIGH){
+   //keep lighting up, because there IS motion
+   //turn on the lights  
+    return true;
+  }
+  return false; 
 }
   
  
