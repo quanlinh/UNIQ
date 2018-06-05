@@ -199,7 +199,8 @@ boolean turnOff(){
   Serial.print("entered else loop");
   
   //FastLED.clear();
-  if(value2 == HIGH || value3 == HIGH || value4 == HIGH || value5 == HIGH || value6 == HIGH){
+  if(value2 == LOW && value3 == LOW && value4 == LOW && value5 == LOW && value6 == LOW){
+  //if(value2 == HIGH || value3 == HIGH || value4 == HIGH || value5 == HIGH || value6 == HIGH){
    //keep lighting up, because there IS motion
    //turn on the lights  
     return true;
