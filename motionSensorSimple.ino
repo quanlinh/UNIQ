@@ -99,19 +99,26 @@ void loop(){
   int part5Start = 127;
   int part5End = 143 ;
   
+  FastLED.show();
+  leds[part1Start+8] = CRGB::Green;
+  leds[part2Start+8] = CRGB::Blue;
+  leds[part3Start+8] = CRGB::Red;
+  leds[part4Start+8] = CRGB::Green;
+  leds[part5Start+8] = CRGB::Cyan;
+
   
   for(part1Start,part1End,part2Start,part2End,part3Start,part3End,part4Start,part4End,part5Start,part5End
         ; part1Start < part1End,part2Start < part2End,part3Start < part3End,part4Start < part4End,part5Start < part5End
         ; part1Start++,part1End--,part2Start++,part2End--,part3Start++,part3End--,part4Start++,part4End--,part5Start++,part5End--) 
     {
-      leds[part1Start] = CRGB::Red;
-      leds[part1End] = CRGB::Red;
-      leds[part2Start] = CRGB::Yellow;
-      leds[part2End] = CRGB::Yellow;
-      leds[part3Start] = CRGB::Purple;
-      leds[part3End] = CRGB::Purple;
-      leds[part4Start] = CRGB::Blue;
-      leds[part4End] = CRGB::Blue;
+      leds[part1Start] = CRGB::Green;
+      leds[part1End] = CRGB::Green;
+      leds[part2Start] = CRGB::Blue;
+      leds[part2End] = CRGB::Blue;
+      leds[part3Start] = CRGB::Red;
+      leds[part3End] = CRGB::Red;
+      leds[part4Start] = CRGB::Green;
+      leds[part4End] = CRGB::Green;
       leds[part5Start] = CRGB::Cyan;
       leds[part5End] = CRGB::Cyan;
       FastLED.show();
@@ -129,25 +136,43 @@ void loop(){
   part4End = 113 ;
   part5Start = 127;
   part5End = 143 ;
-  
-  //digitalWrite(ledPin, LOW);
-   for(int i = 14,j = 15, k = 44, l = 45, m=74, n=75, o=104, p=105, q = 134, r = 135; i >= part1Start && j < part1End, k >= part2Start && l < part2End,m >= part3Start && n < part3End, o >= part4Start 
-   && p < part4End,q >= part5Start && r < part5End; i--,j++, k--, l++, m--, n++, o--, p++, q--, r++) 
+
+
+  for(part1Start,part1End,part2Start,part2End,part3Start,part3End,part4Start,part4End,part5Start,part5End
+        ; part1Start < part1End,part2Start < part2End,part3Start < part3End,part4Start < part4End,part5Start < part5End
+        ; part1Start++,part1End--,part2Start++,part2End--,part3Start++,part3End--,part4Start++,part4End--,part5Start++,part5End--) 
     {
-      leds[i] = CRGB::Black;
-      leds[j] = CRGB::Black;
-      leds[k] = CRGB::Black;
-      leds[l] = CRGB::Black;
-      leds[m] = CRGB::Black;
-      leds[n] = CRGB::Black;
-      leds[o] = CRGB::Black;
-      leds[p] = CRGB::Black;
-      leds[q] = CRGB::Black;
-      leds[r] = CRGB::Black;
+      leds[part1Start] = CRGB::Black;
+      leds[part1End] = CRGB::Black;
+      leds[part2Start] = CRGB::Black;
+      leds[part2End] = CRGB::Black;
+      leds[part3Start] = CRGB::Black;
+      leds[part3End] = CRGB::Black;
+      leds[part4Start] = CRGB::Black;
+      leds[part4End] = CRGB::Black;
+      leds[part5Start] = CRGB::Black;
+      leds[part5End] = CRGB::Black;
       FastLED.show();
-        delay(200);
-  
+       delay(200);
     }
+  
+//   for(int i = 14,j = 15, k = 44, l = 45, m=74, n=75, o=104, p=105, q = 134, r = 135; i >= part1Start && j < part1End, k >= part2Start && l < part2End,m >= part3Start && n < part3End, o >= part4Start 
+//   && p < part4End,q >= part5Start && r < part5End; i--,j++, k--, l++, m--, n++, o--, p++, q--, r++) 
+//    {
+//      leds[i] = CRGB::Black;
+//      leds[j] = CRGB::Black;
+//      leds[k] = CRGB::Black;
+//      leds[l] = CRGB::Black;
+//      leds[m] = CRGB::Black;
+//      leds[n] = CRGB::Black;
+//      leds[o] = CRGB::Black;
+//      leds[p] = CRGB::Black;
+//      leds[q] = CRGB::Black;
+//      leds[r] = CRGB::Black;
+//      FastLED.show();
+//        delay(200);
+//  
+//    }
     
   //delay(5000);
  // FastLED.clear();
